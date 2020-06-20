@@ -24,31 +24,37 @@ class GeneratorPassword:
         self.all_characters.extend(self.SPECIAL_CHARACTERS)
         return self.all_characters
 
-    # TODO: возможно стоит сделать не статический выбор по длинне пароля, а давать пользователю выбирать длину < 20.
-    def generator(self, count=6):
+    def generator(self, length=6):
         """
         Password generator returning a password string.
-        :param count: int (6, 8 or 12)
-        :return: '' <= random string of characters
+        :param length: 6 <= int <= 20
+        :return: '' <- random string of characters
         """
         collect_chars = self._collect_char
         random.shuffle(collect_chars)
-        if count == 6:
+        try:
+            result = self._generator(length, collect_chars)
+        except ValueError:
+            return 'password length can be from 6 to 20 characters'
+        else:
+            return result
+
+    @staticmethod
+    def _generator(length, collect_chars):
+        if length == 6:
             random.shuffle(collect_chars)
             return ''.join(collect_chars[:6])
-        elif count == 8:
+        elif 6 < length <= 20:
             random.shuffle(collect_chars)
-            return ''.join(collect_chars[:8])
-        elif count == 12:
-            random.shuffle(collect_chars)
-            return ''.join(collect_chars[:12])
+            return ''.join(collect_chars[:length])
         else:
-            raise ValueError('Value can only be 6, 8 or 12')
+            raise ValueError('password length can be from 6 to 20 characters')
 
 
 if __name__ == '__main__':
     generator = GeneratorPassword()
-    print('First password:', generator.generator())
-    print('Second password:', generator.generator(8))
-    print('Third password:', generator.generator(12))
-    print('Error checking', generator.generator(13))
+    print('First password [length=6]:', generator.generator())
+    print('Second password [length=12]:', generator.generator(12))
+    print('Third password [length=15]:', generator.generator(15))
+    print('Error checking [length=1]:', generator.generator(1))
+    print('Error checking [length=25]:', generator.generator(25))
