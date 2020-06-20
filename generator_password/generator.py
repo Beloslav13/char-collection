@@ -12,6 +12,9 @@ class GeneratorPassword:
     def __init__(self):
         self.all_characters = []
 
+    def __call__(self, length=6):
+        return self.generator(length)
+
     @property
     def _collect_char(self):
         """
@@ -58,3 +61,7 @@ if __name__ == '__main__':
     print('Third password [length=15]:', generator.generator(15))
     print('Error checking [length=1]:', generator.generator(1))
     print('Error checking [length=25]:', generator.generator(25))
+    print('Generator call as a function [length=6]:', generator())
+    print('Generator call as a function [length=11]:', generator(11))
+    print('Generator call as a function [length=17]:', generator(17))
+
