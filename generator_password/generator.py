@@ -33,10 +33,9 @@ class GeneratorPassword:
         :param length: 6 <= int <= 20
         :return: '' <- random string of characters
         """
-        collect_chars = self._collect_char
-        random.shuffle(collect_chars)
+        random.shuffle(self._collect_char)
         try:
-            result = self._generator(length, collect_chars)
+            result = self._generator(length, self._collect_char)
         except ValueError:
             return 'password length can be from 6 to 20 characters'
         else:
@@ -64,4 +63,3 @@ if __name__ == '__main__':
     print('Generator call as a function [length=6]:', generator())
     print('Generator call as a function [length=11]:', generator(11))
     print('Generator call as a function [length=17]:', generator(17))
-
