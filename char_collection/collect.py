@@ -1,7 +1,7 @@
 import random
 
 
-class GeneratorPassword:
+class CharacterSequence:
     """
     A class generating a random password of different characters.
     """
@@ -13,10 +13,10 @@ class GeneratorPassword:
         self.all_characters = []
 
     def __call__(self, length=6):
-        return self.generator(length)
+        return self.collect(length)
 
     @property
-    def _collect_char(self):
+    def _collect_all_char(self):
         """
         Internal method returning a list of all characters.
         """
@@ -27,39 +27,35 @@ class GeneratorPassword:
         self.all_characters.extend(self.SPECIAL_CHARACTERS)
         return self.all_characters
 
-    def generator(self, length=6):
+    def collect(self, length=6):
         """
-        Password generator returning a password string.
-        :param length: 6 <= int <= 20
+        A collection that returns a string of random characters.
+        :param length: 0 <= int <= 75
         :return: '' <- random string of characters
         """
-        random.shuffle(self._collect_char)
+        random.shuffle(self._collect_all_char)
         try:
-            result = self._generator(length, self._collect_char)
+            result = self._collect(length, self._collect_all_char)
         except ValueError:
             return None
         else:
             return result
 
     @staticmethod
-    def _generator(length, collect_chars):
+    def _collect(length, collect_chars):
         if length == 6:
             random.shuffle(collect_chars)
             return ''.join(collect_chars[:6])
-        elif 6 < length <= 20:
+        elif 0 < length <= 75:
             random.shuffle(collect_chars)
             return ''.join(collect_chars[:length])
-        else:
-            raise ValueError('password length can be from 6 to 20 characters')
 
 
 if __name__ == '__main__':
-    generator = GeneratorPassword()
-    print('First password [length=6]:', generator.generator())
-    print('Second password [length=12]:', generator.generator(12))
-    print('Third password [length=15]:', generator.generator(15))
-    print('Error checking [length=1]:', generator.generator(1))
-    print('Error checking [length=25]:', generator.generator(25))
-    print('Generator call as a function [length=6]:', generator())
-    print('Generator call as a function [length=11]:', generator(11))
-    print('Generator call as a function [length=17]:', generator(17))
+    collect = CharacterSequence()
+    print('First sequence [length=6]:', collect.collect())
+    print('Second sequence [length=12]:', collect.collect(12))
+    print('Third sequence [length=15]:', collect.collect(37))
+    print('sequence call as a function [length=6]:', collect())
+    print('sequence call as a function [length=11]:', collect(11))
+    print('sequence call as a function [length=17]:', collect(50))
