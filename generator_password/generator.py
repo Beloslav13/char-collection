@@ -37,7 +37,7 @@ class GeneratorPassword:
         try:
             result = self._generator(length, self._collect_char)
         except ValueError:
-            return 'password length can be from 6 to 20 characters'
+            return None
         else:
             return result
 
