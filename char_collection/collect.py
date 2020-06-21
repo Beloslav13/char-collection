@@ -49,6 +49,8 @@ class CharacterSequence:
         elif 0 < length <= 75:
             random.shuffle(collect_chars)
             return ''.join(collect_chars[:length])
+        else:
+            raise ValueError('length can be from 1 to 75 characters')
 
 
 if __name__ == '__main__':
