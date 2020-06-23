@@ -38,11 +38,14 @@ class CharacterSequence:
             result = self._collect(length, self._collect_all_char)
         except ValueError:
             return None
+        except TypeError:
+            return None
         else:
             return result
 
     @staticmethod
     def _collect(length, collect_chars):
+        length = int(length)
         if length == 6:
             random.shuffle(collect_chars)
             return ''.join(collect_chars[:6])
@@ -51,13 +54,3 @@ class CharacterSequence:
             return ''.join(collect_chars[:length])
         else:
             raise ValueError('length can be from 1 to 75 characters')
-
-
-if __name__ == '__main__':
-    collect = CharacterSequence()
-    print('First sequence [length=6]:', collect.collect())
-    print('Second sequence [length=12]:', collect.collect(12))
-    print('Third sequence [length=15]:', collect.collect(37))
-    print('sequence call as a function [length=6]:', collect())
-    print('sequence call as a function [length=11]:', collect(11))
-    print('sequence call as a function [length=17]:', collect(50))
