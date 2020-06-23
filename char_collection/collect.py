@@ -5,7 +5,7 @@ class CharacterSequence:
     """
     A class generating a random password of different characters.
     """
-    SPECIAL_CHARACTERS = list('!@#$%^&*()_=+[]{};:"\|,')
+    SPECIAL_CHARACTERS = list('!@#$%^&*()_=+[]{};:\\"|,1234567890')
     CONTINUE_CHR = list(range(91, 97))
     ALPHABET_CHR = range(65, 123)
 
