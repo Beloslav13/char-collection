@@ -10,6 +10,7 @@ class CollectPassword(CharacterSequence):
 
     @staticmethod
     def _collect(length, collect_chars):
+        length = int(length)
         if length == 6:
             random.shuffle(collect_chars)
             return ''.join(collect_chars[:6])
