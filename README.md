@@ -10,16 +10,21 @@ There is also a class for **generating a password** from characters from 6 to 20
 from char_collection.collect import CharacterSequence
 
 collect = CharacterSequence()
-result = collect.collect(10)
-print(result)  # Q#,PT^$o&W (random string)
+collect.collect(10) # Q#,PT^$o&W (random string)
 </pre>
 
 ## Or you can generate a password like this:
 <pre>
 from char_collection.collect_password import CollectPassword
 generator = CollectPassword()
-result = generator.collect(8) 
-print(result) # B|Gd";;b
+generator.collect(8) # B|Gd";;b
+</pre>
+
+## You can also use the CollectPasswordNotSpecialSymbol class, which will generate a password without special characters
+<pre>
+from char_collection.collect_password import CollectPasswordNotSpecialSymbol
+generator_not_special_symbol = CollectPasswordNotSpecialSymbol()
+generator_not_special_symbol.collect(8) # L3nAIorm
 </pre>
 
 **You can use the password generator, for example, in a telegram bot by connecting this module with the bot. 
