@@ -21,13 +21,12 @@ class CollectPassword(CharacterSequence):
             raise ValueError('password length can be from 6 to 20 characters')
 
 
-if __name__ == '__main__':
-    generator = CollectPassword()
-    print('First password [length=6]:', generator.collect())
-    print('Second password [length=12]:', generator.collect(12))
-    print('Third password [length=15]:', generator.collect(15))
-    print('Error checking [length=1]:', generator.collect(1))
-    print('Error checking [length=25]:', generator.collect(25))
-    print('Generator call as a function [length=6]:', generator())
-    print('Generator call as a function [length=11]:', generator(11))
-    print('Generator call as a function [length=17]:', generator(17))
+class CollectPasswordNotSpecialSymbol(CollectPassword):
+
+    @property
+    def _collect_all_char(self):
+        special_characters = self.SPECIAL_CHARACTERS.copy()
+        for char in special_characters:
+            if not char.isdigit():
+                self.SPECIAL_CHARACTERS.remove(char)
+        return super()._collect_all_char
