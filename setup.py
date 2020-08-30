@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="char-collection",
-    version="1.0",
+    version="1.1.0",
     author="Beloslav",
     author_email="velislav1329@gmail.com",
     description="Building random characters",
