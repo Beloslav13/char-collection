@@ -22,6 +22,9 @@ class CollectPassword(CharacterSequence):
 
 
 class CollectPasswordNotSpecialSymbol(CollectPassword):
+    """
+    A class that generates a password without special characters
+    """
 
     @property
     def _collect_all_char(self):
