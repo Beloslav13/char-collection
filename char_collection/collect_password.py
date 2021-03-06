@@ -11,10 +11,7 @@ class CollectPassword(CharacterSequence):
     @staticmethod
     def _collect(length, collect_chars):
         length = int(length)
-        if length == 6:
-            random.shuffle(collect_chars)
-            return ''.join(collect_chars[:6])
-        elif 6 < length <= 20:
+        if 6 <= length <= 20:
             random.shuffle(collect_chars)
             return ''.join(collect_chars[:length])
         else:

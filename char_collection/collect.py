@@ -35,20 +35,17 @@ class CharacterSequence:
         random.shuffle(self._collect_all_char())
         try:
             result = self._collect(length, self._collect_all_char())
-        except ValueError:
-            return None
-        except TypeError:
-            return None
+        except ValueError as exc:
+            return f'ValuerError: {exc}'
+        except TypeError as exc:
+            return f"TypeError: {exc}"
         else:
             return result
 
     @staticmethod
     def _collect(length, collect_chars):
         length = int(length)
-        if length == 6:
-            random.shuffle(collect_chars)
-            return ''.join(collect_chars[:6])
-        elif 0 < length <= 75:
+        if 0 < length <= 75:
             random.shuffle(collect_chars)
             return ''.join(collect_chars[:length])
         else:
