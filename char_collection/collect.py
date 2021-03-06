@@ -15,7 +15,6 @@ class CharacterSequence:
     def __call__(self, length=6):
         return self.collect(length)
 
-    @property
     def _collect_all_char(self):
         """
         Internal method returning a list of all characters.
@@ -33,9 +32,9 @@ class CharacterSequence:
         :param length: 0 <= int <= 75
         :return: '' <- random string of characters
         """
-        random.shuffle(self._collect_all_char)
+        random.shuffle(self._collect_all_char())
         try:
-            result = self._collect(length, self._collect_all_char)
+            result = self._collect(length, self._collect_all_char())
         except ValueError:
             return None
         except TypeError:

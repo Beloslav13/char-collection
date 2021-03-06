@@ -26,7 +26,6 @@ class CollectPasswordNotSpecialSymbol(CollectPassword):
     A class that generates a password without special characters
     """
 
-    @property
     def _collect_all_char(self):
         special_characters = self.SPECIAL_CHARACTERS.copy()
         for char in special_characters:
