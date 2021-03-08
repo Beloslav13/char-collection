@@ -29,7 +29,7 @@ class CharacterSequence:
     def collect(self, length=6):
         """
         A collection that returns a string of random characters.
-        :param length: 0 <= int <= 75
+        :param length: 0 <= length(int) <= 75
         :return: '' <- random string of characters
         """
         random.shuffle(self._collect_all_char())
