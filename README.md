@@ -29,4 +29,4 @@ generator_not_special_symbol.collect(8) # L3nAIorm
 
 **You can use the password generator, for example, in a telegram bot by connecting this module with the bot. 
 Password must be at least 6 and no more than 20 characters.
-If the length is false, returns None.**
+If the length is false or an exception occurs, returns an error string**
